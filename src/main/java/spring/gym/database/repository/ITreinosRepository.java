@@ -1,6 +1,5 @@
 package spring.gym.database.repository;
 
-import spring.gym.database.model.ExerciciosEntity;
 import spring.gym.database.model.TreinosEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 

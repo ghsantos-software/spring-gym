@@ -1,7 +1,6 @@
 package spring.gym.database.repository;
 
 import spring.gym.database.model.AvaliacaoesFisicasEntity;
-import spring.gym.database.model.TreinosEntity;
 import spring.gym.dto.AvaliacoesFisicasProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

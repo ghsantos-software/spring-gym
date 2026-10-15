@@ -1,5 +1,6 @@
 package spring.gym.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import spring.gym.dto.AvaliacaoFisicaDto;
 import spring.gym.dto.AvaliacoesFisicasProjection;
 import spring.gym.exception.BadRequestException;
@@ -24,18 +25,21 @@ public class AvaliacoesFisicasController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void criarAvaliacaoFisica(@Valid @RequestBody AvaliacaoFisicaDto avaliacaoFisicaDto) throws NotFoundException, BadRequestException {
         avaliacaoFisicaService.criarAvaliacaoFisica(avaliacaoFisicaDto);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<AvaliacoesFisicasProjection> getAllAvaliacoes(){
         return avaliacaoFisicaService.getAllAvaliacoes();
     }
 
     @GetMapping("/page/{page}/size/{size}")
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAuthority('ADMIN')")
     public Page<AvaliacoesFisicasProjection> getAllAvaliacoesPageable(@PathVariable Integer page,
                                                                       @PathVariable Integer size){
         return avaliacaoFisicaService.getAllAvaliacoesPageable(page, size);

@@ -1,5 +1,6 @@
 package spring.gym.handler;
 
+import org.springframework.security.access.AccessDeniedException;
 import spring.gym.exception.BadRequestException;
 import spring.gym.exception.ErrorResponse;
 import spring.gym.exception.NotFoundException;
@@ -39,5 +40,15 @@ public class GlobalExceptionHandler {
                 .build();
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ErrorResponse> handleException(AccessDeniedException ex) {
+        ErrorResponse response = ErrorResponse.builder()
+                .message(ex.getMessage())
+                .status(HttpStatus.FORBIDDEN.value())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
     }
 }
